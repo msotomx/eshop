@@ -1,10 +1,10 @@
 <li class="h-cart">
-    <a class="cart-contents" href="cart.html">
+    <a class="cart-contents" href="#"> <!-- cart.html -->
         <p class="h-cart-icon">
             <i class="ion-android-cart"></i>
             <span>1</span>
         </p>
-        <p class="h-cart-total">$100</p>
+        <p class="h-cart-total">${{value.subtotal}}</p>
     </a>
     <div class="widget_shopping_cart">
         <div class="widget_shopping_cart_content">
@@ -20,9 +20,9 @@
                 </li>
                 
             </ul>
-            <p class="total"><b>Subtotal:</b> $100</p>
+            <p class="total"><b>Subtotal:</b> ${{value.subtotal}}</p>
             <p class="buttons">
-                <a href="#" class="button">Ver Carrito</a>
+                <a href="{% url 'web:carrito' %}" class="button">Ver Carrito</a>
                 <a href="#" class="button">Pedido</a>
             </p>
         </div>
