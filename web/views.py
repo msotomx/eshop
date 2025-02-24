@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 
 from .models import Categoria, Producto
 
@@ -89,3 +89,32 @@ def eliminarProductoCarrito(request,producto_id):
 
 def registrarPedido(request):
     pass
+
+""" VISTAS PARA CLIENTES Y USUARIOS """
+
+from django.contrib.auth.models import User
+from django.contrib.auth import login, logout, authenticate
+
+def crearUsuario(request):
+
+    if request.method == 'POST':
+        dataUsuario = request.POST['nuevoUsuario']
+        dataPassword = request.POST['nuevoPassword']
+
+        nuevoUsuario = User.objects.create_user(username=dataUsuario,password=dataPassword)
+        if nuevoUsuario is not None:  # si no es vacio, si tiene un valor
+            login(request,nuevoUsuario)
+            return redirect('/cuenta')
+
+# <!-- {% load crispy_forms_tags %}  -->   linea 2 de cuenta.html
+
+    return render(request,'login.html')
+
+def cuentaUsuario(request):
+    return render(request,'cuenta.html')
+
+def loginUsuario(request):
+    return render(request,'login.html')
+
+
+
